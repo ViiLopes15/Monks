@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mais Tocadas do Spotify</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 380vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spotify</h1>
+        <h2>Pop</h2>
+        <h3>Ariana Grande</h3>
+        <h4>Seguidores 98.814.719</h4>
+        <h4>Popularidade 89</h4>
+        <br>
+        <h3>Justin Bieber</h3>
+        <h3>Seguidores 76.626.180</h3>
+        <h4>Popularidade 84</h4>
+        <br>
+        <h3>Bruno Mars</h3>
+        <h3>Seguidores 57.920.481</h3>
+        <h3>Popularidade 88</h3>
+        <br>
+        <h3>Imagine Dragons</h3>
+        <h3>Seguidores 53.945.441</h3>
+        <h3>Popularidade 84</h3>
+        <br>
+        <h3>Lady Gaga</h3>
+        <h3>Seguidores 30.970.792</h3>
+        <h3>Popularidade 88</h3>
+        <br>
+        <h3>Demi Lovato</h3>
+        <h3>Seguidores 26.667.120</h3>
+        <h3>Popularidade 79</h3>
+        <br>
+        <br>
+        <ul id="playlist1"></ul>
+        <h2>Gêneros mais Comuns</h2>
+        <h3>Taylor Swift</h3>
+        <h3>Seguidores 118.971.229</h3>
+        <h3>Popularidade 92</h3>
+        <br>
+        <h3>Ed Sheeran</h3>
+        <h3>Seguidores 115.389.739</h3>
+        <h3>Popularidade 85</h3>
+        <br>
+        <h3>Eminem</h3>
+        <h3>Seguidores 88.761.512</h3>
+        <h3>Popularidade 84</h3>
+        <br>
+        <h3>Rihanna</h3>
+        <H3>Seguidores 61.941.130</H3>
+        <h3>Popularidade 84</h3>
+        <br>
+        <h3>Coldplay</h3>
+        <h3>Seguidores</h3>
+        <h3>Popularidade 89</h3>
+        <br>
+        <h3>Queen</h3>
+        <h3>Seguidores 50.817.901</h3>
+        <h3>Popularidade 83</h3>
+        <br>
+        <h3>Maroon 5</h3>
+        <h3>Seguidores 42.305.459</h3>
+        <h3>Popularidade 84</h3>
+        <br>
+        <h3>Beyoncé</h3>
+        <h3>Seguidores 38.281.054</h3>
+        <h3>Popularidade 78</h3>
+        <br>
+        <h3>Shakira</h3>
+        <h3>Seguidores 34.056.123</h3>
+        <h3>Popularidade 87</h3>
+        <br>
+        <ul id="playlist2"></ul>
+    </div>
+    <script>
+        fetch('/api/most_played')
+            .then(response => response.json())
+            .then(data => {
+                const [playlist1, playlist2] = data;
+
+                const playlist1Element = document.getElementById('playlist1');
+                const playlist2Element = document.getElementById('playlist2');
+
+                playlist1.forEach(track => {
+                    const li = document.createElement('li');
+                    li.textContent = track;
+                    playlist1Element.appendChild(li);
+                });
+
+                playlist2.forEach(track => {
+                    const li = document.createElement('li');
+                    li.textContent = track;
+                    playlist2Element.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>
